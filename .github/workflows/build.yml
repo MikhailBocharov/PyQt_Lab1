@@ -27,7 +27,7 @@ jobs:
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile --windowed --name MyApp --add-data "lab1.ui;." --add-data "lab1_form2.ui;." --add-data "nature_044_600h600-200x200.png;." main.py
+          pyinstaller --onefile --windowed --name lab1_Bocharov --add-data "lab1.ui;." --add-data "lab1_form2.ui;." --add-data "nature_044_600h600-200x200.png;." main.py
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
