@@ -3,11 +3,22 @@ from PyQt6 import uic
 from PyQt6.QtGui import QColor, QFont
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
 
+# служебный код для указания пути к файлам (нужно для корректной сборки)
+import os
+import sys
+
+def resource_path(relative_path):
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+
+    return os.path.join(base_path, relative_path)
 
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('lab1.ui', self)
+        uic.loadUi(resource_path('lab1.ui'), self)
         self.setFixedSize(self.size())
 
         self.pushButton.clicked.connect(self.textOut)
@@ -60,7 +71,7 @@ class MyWidget(QMainWindow):
 class Form2(QWidget):
     def __init__(self, parent_form):
         super().__init__()
-        uic.loadUi('lab1_form2.ui', self)
+        uic.loadUi(resource_path('lab1_form2.ui'), self)
         self.setFixedSize(self.size())
         self.parent_form = parent_form
         self.pushButton.clicked.connect(self.close_form)
